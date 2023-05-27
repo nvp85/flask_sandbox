@@ -28,6 +28,7 @@ class RegistrationForm(FlaskForm):
         
 class EditProfileForm(FlaskForm):
     username = StringField('username', validators=[DataRequired()])
+    about_me = StringField('about me')
     submit = SubmitField('submit')
 
     def __init__(self, original_username, *args, **kwargs):
