@@ -2,7 +2,7 @@ from app import app, db
 from flask import render_template, redirect, flash, url_for, request
 from app.forms import LoginForm, RegistrationForm, EditProfileForm
 from flask_login import current_user, login_user, logout_user, login_required
-from app.models import User
+from app.models import User, Post
 from werkzeug.urls import url_parse
 from datetime import datetime
 
@@ -10,7 +10,7 @@ from datetime import datetime
 @app.route('/')
 @app.route('/index')
 def index():
-    
+    posts = Post.query.all()
     return render_template('index.html', title='Home', posts=posts)
 
 @app.route('/login', methods=['GET','POST'])
