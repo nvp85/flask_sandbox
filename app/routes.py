@@ -11,7 +11,7 @@ from datetime import datetime
 @app.route('/index')
 def index():
     posts = Post.query.all()
-    return render_template('index.html', title='Home', posts=posts)
+    return render_template('index.html', title='Home', posts=posts, user=current_user)
 
 @app.route('/login', methods=['GET','POST'])
 def login():
