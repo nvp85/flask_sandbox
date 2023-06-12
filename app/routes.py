@@ -9,6 +9,7 @@ from datetime import datetime
 
 @app.route('/')
 @app.route('/index')
+@login_required
 def index():
     posts = Post.query.all()
     return render_template('index.html', title='Home', posts=posts, user=current_user)
