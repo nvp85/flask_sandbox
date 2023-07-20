@@ -8,8 +8,8 @@ from datetime import datetime
 
 
 
-@app.route('/')
-@app.route('/index')
+@app.route('/', methods=['GET', 'POST'])
+@app.route('/index', methods=['GET', 'POST'])
 @login_required
 def index():
     form = PostForm()
@@ -19,8 +19,8 @@ def index():
         db.session.commit()
         flash('Your post has been published!')
         return redirect(url_for('index'))
-    posts = Post.query.all()
-    return render_template('index.html', title='Home', posts=posts, user=current_user, form=form)
+    posts = current_user.followed_posts().all()
+    return render_template('index.html', title='Home Page', posts=posts, user=current_user, form=form)
 
 @app.route('/login', methods=['GET','POST'])
 def login():
